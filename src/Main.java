@@ -55,11 +55,7 @@ public class Main {
 
     public static boolean checkYear(int year) {
 
-        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
     }
 
     public static int determineOS(int oS) {
@@ -74,11 +70,7 @@ public class Main {
     }
 
     public static boolean determineManufactureYear(int manufactureYear) {
-        if (manufactureYear == LocalDate.now().getYear()) {
-            return true;
-        } else {
-            return false;
-        }
+        return manufactureYear == LocalDate.now().getYear();
     }
 
     public static int determineDaysNumbers(int deliveryDistance) {
