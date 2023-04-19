@@ -7,38 +7,18 @@ public class Main {
         Scanner in = new Scanner(System.in);
         System.out.println("Введите год для проверки");
         int year = in.nextInt();
-        if (checkYear(year)) {
-            System.out.println(year + " год является високосным");
-        } else {
-            System.out.println(year + " год не является високосным");
-        }
+        checkYear(year);
+
 
         System.out.println("Задача 2");
 
         System.out.println("Введите год изготовления телефона");
         int clientDeviceYear = in.nextInt();
-
         System.out.println("Выберите операционную систему: 0 = Android или 1 = iOS: ");
         int clientOS = in.nextInt();
 
-        if (determineManufactureYear(clientDeviceYear)) {
-            if (determineOS(clientOS) == 1) {
-                System.out.println("Установите версию приложения для iOS по ссылке: ");
-            } else if (determineOS(clientOS) == 0) {
-                System.out.println("Установите версию приложения для Android по ссылке: ");
-            } else {
-                System.out.println("К сожалению, не удается определить операционную систему!");
-            }
-        }
-        if (!determineManufactureYear(clientDeviceYear)) {
-            if (determineOS(clientOS) == 1) {
-                System.out.println("Установите облегченную версию приложения для iOS по ссылке: ");
-            } else if (determineOS(clientOS) == 0) {
-                System.out.println("Установите облегченную версию приложения для Android по ссылке: ");
-            } else {
-                System.out.println("К сожалению, не удается определить операционную систему!");
-            }
-        }
+        chooseLink(clientDeviceYear, clientOS);
+
 
         System.out.println("Задача 3");
 
@@ -53,24 +33,39 @@ public class Main {
 
     }
 
-    public static boolean checkYear(int year) {
+    public static void checkYear(int year) {
 
-        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
-    }
-
-    public static int determineOS(int oS) {
-
-        if (oS == 1) {
-            return 1;
-        } else if (oS == 0) {
-            return 0;
+        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+            System.out.println(year + " год является високосным");
         } else {
-            return 3;
+            System.out.println(year + " год не является високосным");
         }
     }
 
-    public static boolean determineManufactureYear(int manufactureYear) {
-        return manufactureYear == LocalDate.now().getYear();
+    public static void chooseLink(int clientDeviceYear, int clientOS) {
+
+        if (clientDeviceYear == LocalDate.now().getYear()) {
+            if (clientOS == 1) {
+                System.out.println("Установите версию приложения для iOS по ссылке: ");
+            } else if (clientOS == 0) {
+                System.out.println("Установите версию приложения для Android по ссылке: ");
+            } else {
+                System.out.println("К сожалению, не удается определить операционную систему!");
+            }
+        }
+        if (clientDeviceYear < LocalDate.now().getYear()) {
+            if (clientOS == 1) {
+                System.out.println("Установите облегченную версию приложения для iOS по ссылке: ");
+            } else if (clientOS == 0) {
+                System.out.println("Установите облегченную версию приложения для Android по ссылке: ");
+            } else {
+                System.out.println("К сожалению, не удается определить операционную систему!");
+            }
+        }
+        if (clientDeviceYear > LocalDate.now().getYear()) {
+            System.out.println("Год не может быть больше текущего");
+        }
+
     }
 
     public static int determineDaysNumbers(int deliveryDistance) {
