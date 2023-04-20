@@ -9,15 +9,15 @@ public class Main {
         int year = in.nextInt();
         checkYear(year);
 
-
         System.out.println("Задача 2");
 
         System.out.println("Введите год изготовления телефона");
         int clientDeviceYear = in.nextInt();
-        System.out.println("Выберите операционную систему: 0 = Android или 1 = iOS: ");
-        int clientOS = in.nextInt();
+        Scanner phone = new Scanner(System.in);
+        System.out.println("Выберите операционную систему: Android или iOS");
+        String phoneOS = phone.nextLine();
 
-        chooseLink(clientDeviceYear, clientOS);
+        chooseLink(clientDeviceYear, phoneOS);
 
 
         System.out.println("Задача 3");
@@ -35,35 +35,40 @@ public class Main {
 
     public static void checkYear(int year) {
 
-        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-            System.out.println(year + " год является високосным");
+        if (year >= 0) {
+            if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+                System.out.println(year + " год является високосным");
+            } else {
+                System.out.println(year + " год не является високосным");
+            }
         } else {
-            System.out.println(year + " год не является високосным");
+            System.out.println("Год не может быть отрицательным");
         }
     }
 
-    public static void chooseLink(int clientDeviceYear, int clientOS) {
+    public static void chooseLink(int clientDeviceYear, String phoneOS) {
+
 
         if (clientDeviceYear == LocalDate.now().getYear()) {
-            if (clientOS == 1) {
+            if (phoneOS.equals("iOS")) {
                 System.out.println("Установите версию приложения для iOS по ссылке: ");
-            } else if (clientOS == 0) {
+            } else if (phoneOS.equals("Android")) {
                 System.out.println("Установите версию приложения для Android по ссылке: ");
             } else {
                 System.out.println("К сожалению, не удается определить операционную систему!");
             }
         }
-        if (clientDeviceYear < LocalDate.now().getYear()) {
-            if (clientOS == 1) {
+        if (clientDeviceYear < LocalDate.now().getYear() && clientDeviceYear >= 0) {
+            if (phoneOS.equals("iOS")) {
                 System.out.println("Установите облегченную версию приложения для iOS по ссылке: ");
-            } else if (clientOS == 0) {
+            } else if (phoneOS.equals("Android")) {
                 System.out.println("Установите облегченную версию приложения для Android по ссылке: ");
             } else {
                 System.out.println("К сожалению, не удается определить операционную систему!");
             }
         }
-        if (clientDeviceYear > LocalDate.now().getYear()) {
-            System.out.println("Год не может быть больше текущего");
+        else {
+            System.out.println("Год не может быть больше текущего или отрицательным");
         }
 
     }
