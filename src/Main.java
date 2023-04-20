@@ -3,7 +3,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         System.out.println("Задача 1");
+
         Scanner in = new Scanner(System.in);
         System.out.println("Введите год для проверки");
         int year = in.nextInt();
@@ -19,7 +21,6 @@ public class Main {
 
         chooseLink(clientDeviceYear, phoneOS);
 
-
         System.out.println("Задача 3");
 
         System.out.println("Введите дальность доставки");
@@ -30,7 +31,6 @@ public class Main {
         } else {
             System.out.println("Доставка не осуществляется");
         }
-
     }
 
     public static void checkYear(int year) {
@@ -66,8 +66,7 @@ public class Main {
             } else {
                 System.out.println("К сожалению, не удается определить операционную систему!");
             }
-        }
-        else {
+        } else {
             System.out.println("Год не может быть больше текущего или отрицательным");
         }
 
